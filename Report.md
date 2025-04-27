@@ -8,15 +8,15 @@
 
 • 實作排序 n 個數字的函式，包含以下：
 
-– Insertion Sort
+[Tab]– Insertion Sort
 
-– Quick Sort (using median-of-three method to choose pivot)
+[Tab]– Quick Sort (using median-of-three method to choose pivot)
 
-– Merge Sort (using iterative method)
+[Tab]– Merge Sort (using iterative method)
 
-– Heap Sort
+[Tab]– Heap Sort
 
-– Composite Sort<>
+[Tab]– Composite Sort<>  
 
 • 我們使用 n=1000, 5000, 1000, 20000 時，計算每個排序函式的執行時間和記憶體，並繪製圖表
 
