@@ -202,6 +202,7 @@ int main()
 | 20000    | 114.0996 μs | 983.21562 μs | 1631.34204 μs |
 
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Insertion%20Sort.png)
+
 時間複雜度：
 - 順序：$O(n)$
 - 隨機、反序：$O(n^2)$
@@ -226,6 +227,7 @@ int main()
 | 20000    | 1368.08814 μs | 1344.94366 μs | 1249.88472 μs |
 
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/heap%20sort.png)
+
 時間複雜度：$O(n \log n)$。
 
 ### 空間複雜度
@@ -237,6 +239,8 @@ int main()
 |40 | 40 | 40 | 40|
 |160 | 160 | 160 | 160|
 
+
+![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Pagefile%20141751.png)
 ### 結論
 
 結合測試結果，Heap Sort 最穩定，內建 sort 在隨機資料上最快，Insertion Sort 對已排序資料最有效。
