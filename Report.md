@@ -200,6 +200,7 @@ int main()
 | 5000     | 23.128655 μs | 107.547145 μs | 115.036595 μs |
 | 10000    | 52.5425 μs | 303.00974 μs | 402.40866 μs |
 | 20000    | 114.0996 μs | 983.21562 μs | 1631.34204 μs |
+
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Insertion%20Sort.png)
 時間複雜度：
 - 順序：$O(n)$
@@ -213,6 +214,7 @@ int main()
 | 5000  | 58.81136 ms | 165.00912 ms | 77.96431 ms |
 | 10000 | 128.98077 ms | 356.61326 ms | 163.77543 ms |
 | 20000 | 279.25102 ms | 761.82784 ms | 349.26926 ms |
+
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/STL%20sort.png)
 ### Heap Sort
 
@@ -222,6 +224,7 @@ int main()
 | 5000     | 289.60007 μs | 296.141565 μs | 260.291775 μs |
 | 10000    | 646.94058 μs | 624.67445 μs | 571.98586 μs |
 | 20000    | 1368.08814 μs | 1344.94366 μs | 1249.88472 μs |
+
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/heap%20sort.png)
 時間複雜度：$O(n \log n)$。
 
