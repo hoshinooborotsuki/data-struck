@@ -5,6 +5,7 @@
 ## 解題說明
 
 • 本題要求實現以下問題的 worst-case 與 average-case
+
 • 實作排序 n 個數字的函式，包含以下：
 – Insertion Sort
 – Quick Sort (using median-of-three method to choose pivot)
