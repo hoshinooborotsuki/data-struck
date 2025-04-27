@@ -217,6 +217,9 @@ int main()
 | 20000 | 279.25102 ms | 761.82784 ms | 349.26926 ms |
 
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/STL%20sort.png)
+
+時間複雜度：$O(n \log n)$（使用混合排序）
+
 ### Heap Sort
 
 | 數量\情況 | 順序 | 隨機 | 反序 |
@@ -241,7 +244,14 @@ int main()
 
 
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Pagefile%20141751.png)
+
+
 ### 結論
 
-結合測試結果，Heap Sort 最穩定，內建 sort 在隨機資料上最快，Insertion Sort 對已排序資料最有效。
+綜合測試結果：
 
+Heap Sort：表現最穩定，在各種情況下時間差異不大。
+
+內建 sort：在隨機資料上速度最快，適合一般用途。
+
+Insertion Sort：對於已排序資料極為高效，但在隨機或反序資料下效能迅速下降。
