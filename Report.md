@@ -16,8 +16,7 @@
 
 – Heap Sort
 
-– Composite Sort
-
+– Composite Sort<>
 
 • 我們使用 n=1000, 5000, 1000, 20000 時，計算每個排序函式的執行時間和記憶體，並繪製圖表
 
