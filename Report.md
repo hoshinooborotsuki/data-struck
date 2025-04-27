@@ -1,6 +1,6 @@
 # 第一組41243211王翔禹、41243213王維德
 
-作業一
+&emsp;作業一
 
 ## 解題說明
 
@@ -10,13 +10,13 @@
 
 &emsp;– Insertion Sort
 
-[Tab]– Quick Sort (using median-of-three method to choose pivot)
+&emsp;– Quick Sort (using median-of-three method to choose pivot)
 
-[Tab]– Merge Sort (using iterative method)
+&emsp;– Merge Sort (using iterative method)
 
-[Tab]– Heap Sort
+&emsp;– Heap Sort
 
-[Tab]– Composite Sort<>  
+&emsp;– Composite Sort<>  
 
 • 我們使用 n=1000, 5000, 1000, 20000 時，計算每個排序函式的執行時間和記憶體，並繪製圖表
 
@@ -214,8 +214,8 @@ int main()
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Insertion%20Sort.png)
 
 時間複雜度：
-- 順序：$O(n)$
-- 隨機、反序：$O(n^2)$
+&emsp;- 順序：$O(n)$
+&emsp;- 隨機、反序：$O(n^2)$
 
 ### 內建 sort
 
@@ -241,7 +241,7 @@ int main()
 
 ![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/heap%20sort.png)
 
-時間複雜度：$O(n \log n)$。
+&emsp;時間複雜度：$O(n \log n)$。
 
 ### 空間複雜度
 
@@ -260,8 +260,8 @@ int main()
 
 綜合測試結果：
 
-Heap Sort：表現最穩定，在各種情況下時間差異不大。
+&emsp;Heap Sort：表現最穩定，在各種情況下時間差異不大。
 
-內建 sort：在隨機資料上速度最快，適合一般用途。
+&emsp;內建 sort：在隨機資料上速度最快，適合一般用途。
 
-Insertion Sort：對於已排序資料極為高效，但在隨機或反序資料下效能迅速下降。
+&emsp;Insertion Sort：對於已排序資料極為高效，但在隨機或反序資料下效能迅速下降。
