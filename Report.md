@@ -205,7 +205,6 @@ original：包含輸入資料的 const vector<int>，用於複製。
 呼叫 std::sort 對 working 進行升序排序。
 備註：
 std::sort 通常使用優化的混合演算法（例如 Introsort），結合快速排序、堆排序和插入排序。
-此函數在提供的 main 程式中未被使用，但可用於效能測試。
 
 ## Binary Insertion Sort 函數
 ```
@@ -246,7 +245,6 @@ void binaryInsertionSort(vector<int>& working, const vector<int>& original)
 備註：
 Binary Insertion Sort 將比較次數從 O(n) 減少到 O(log n)，但仍需 O(n) 的移動操作。
 適用於小型資料集，但在大型資料集上效率較低。
-此函數在提供的 main 程式中未被使用。
 ## Heap Sort 函數
 ```
 void heapSort(vector<int>& working, const vector<int>& original)
@@ -276,7 +274,6 @@ void heapSort(vector<int>& working, const vector<int>& original)
 縮減堆大小 (i) 並呼叫 heap 恢復最大堆性質。
 備註：
 堆排序的時間複雜度在所有情況下均為 O(n log n)。
-這是 main 程式中用於效能測試的排序演算法。
 
 ## 檔案讀取函數
 ```
