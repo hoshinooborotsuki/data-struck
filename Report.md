@@ -234,7 +234,7 @@ void binaryInsertionSort(vector<int>& working, const vector<int>& original)
     }
 }
 ```
-目的：實現 Binary Insertion Sort，一種使用二分搜尋優化插入位置的插入排序。
+目的：因為教授說要最快,所以我找到了這個本體是插入排序,但使用二元來加速過程,實現了 Binary Insertion Sort，一種使用二分搜尋優化插入位置的插入排序。
 參數：與 stlSort 相同。
 功能：
 使用 memcpy 將 original 複製到 working。
