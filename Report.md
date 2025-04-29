@@ -520,7 +520,8 @@ testSizes：測試資料量為1000, 2000 ,3000 ,4000 , 5000, 6000, 7000, 8000, 9
 
 
 
-![image]()
+![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Figure_2.png)
+![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Figure_3.png)
 
 時間複雜度：
 &emsp;- 順序：$O(n)$
@@ -545,7 +546,7 @@ testSizes：測試資料量為1000, 2000 ,3000 ,4000 , 5000, 6000, 7000, 8000, 9
 
 
 
-![image]()
+![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Figure_4.png)
 
 時間複雜度：$O(n \log n)$（使用混合排序）
 
@@ -567,7 +568,7 @@ testSizes：測試資料量為1000, 2000 ,3000 ,4000 , 5000, 6000, 7000, 8000, 9
 | 20000  | 1301.33390000 μs | 1315.81894000 μs| 1207.05038000 μs |
 
 
-![image]()
+![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Figure_1.png)
 
 &emsp;時間複雜度：$O(n \log n)$。
 
