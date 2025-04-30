@@ -875,7 +875,7 @@ testSizes：測試資料量為1000, 2000 ,3000 ,4000 , 5000, 6000, 7000, 8000, 9
 ### 結論
 
 綜合測試結果：
-Binary Insertion Sort
+##### Binary Insertion Sort
 
 &emsp;在小數據量時（例如1000–5000筆）表現良好，尤其在隨機資料情況下，速度甚至快過傳統 Insertion Sort。
 
@@ -883,31 +883,31 @@ Binary Insertion Sort
 
 &emsp;整體來看，Binary Insertion Sort在中小型資料上有不錯的表現，但不適合大型資料集。
 
-Insertion Sort
+##### Insertion Sort
 
 &emsp;順序（最好情況）下表現尚可，符合 $O(n)$ 複雜度，但在隨機與**反序（最壞情況）**下，隨資料量增加，耗時暴增。
 
 &emsp;反序資料耗時最明顯，且遠大於其他演算法，證明了其在最壞情況下效能低落，不適合處理大量、無序資料。
 
-內建 sort
+##### STL sort
 
 &emsp;穩定且快速，無論資料是順序、隨機還是反序，耗時皆遠低於 Binary Insertion Sort 和 Insertion Sort。
 
-&emsp;表現隨資料量成長呈現 $O(n\log n)$ 增長趨勢，且幾乎沒有劇烈波動，顯示其混合排序策略（如 Timsort）在實務上非常有效。
+&emsp;表現隨資料量成長呈現 $O(n\log n)$ 增長趨勢，且幾乎沒有劇烈波動，顯示其混合排序策略在實務上非常有效。
 
-Heap Sort
+##### Heap Sort
 
 &emsp;各種情況下表現都非常穩定，耗時曲線平滑，符合 $O(n\log n)$ 預期。
 
 &emsp;比內建 sort 稍慢，但勝在穩定性高，即使是最壞情況也沒有明顯性能下降。
 
-Quick Sort
+##### Quick Sort
 
 &emsp;在隨機資料下表現非常好，速度快於 Heap Sort。
 
 &emsp;但在順序或最壞情況下，耗時略為增加，顯示 Quick Sort在劣勢分割時會有退化傾向，不過影響不如理論上 $O(n^2)$ 那麼嚴重（應該有作部分優化，如選取中位數 pivot）。
 
-Merge Sort
+##### Merge Sort
 
 &emsp;各情況下都維持 $O(n\log n)$ 的趨勢，但整體耗時偏高，明顯慢於內建 sort、Heap Sort和Quick Sort。
 
@@ -915,7 +915,7 @@ Merge Sort
 
 &emsp;適合需要穩定排序（Stable Sort）的場景，但若只考慮速度，並非最佳選擇。
 
-##### 整體排名（依一般隨機資料下的速度與穩定性考量）：
+### 整體排名（依一般隨機資料下的速度與穩定性考量）：
 &emsp;內建 sort（最快、最穩）
 
 &emsp;Quick Sort（隨機快，最壞情況略差）
