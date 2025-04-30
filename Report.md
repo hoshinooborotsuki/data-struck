@@ -10,7 +10,7 @@
 
 &emsp;– Insertion Sort<br>
 &emsp;– Quick Sort (using median-of-three method to choose pivot)<br>
-&emsp;– Merge Sort (using iterative method)<br>
+&emsp;– Merge Sort <br>
 &emsp;– Heap Sort<br>
 &emsp;– Composite Sort<br>
 
@@ -49,6 +49,7 @@
 
 using namespace std;
 using namespace chrono;
+#define INSERTION_SORT_THRESHOLD 16 //
 
 // 使用內建 sort 排序
 void stlSort(vector<int>& working, const vector<int>& original)
@@ -141,6 +142,111 @@ vector<int> loadFile(const string& filename)
     }
     infile.close();
     return data;
+}
+
+// 插入排序(作為加速quick sort用)
+void insertion_sort(int arr[], int left, int right)
+{
+    for (int i = left + 1; i <= right; ++i)
+    {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= left && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            --j;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+// 自訂交換函式
+inline void swap(int& a, int& b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+// 選三數中位數
+int median_of_three(int arr[], int left, int right)
+{
+    int mid = left + (right - left) / 2;
+    if (arr[right] < arr[left]) swap(arr[left], arr[right]);
+    if (arr[mid] < arr[left]) swap(arr[mid], arr[left]);
+    if (arr[right] < arr[mid]) swap(arr[right], arr[mid]);
+    swap(arr[left], arr[mid]);
+    return arr[left];
+}
+
+// 非遞迴版快速排序
+void quicksort(int arr[], int left, int right) 
+{
+    std::stack<std::pair<int, int> > stk;
+    stk.push(std::make_pair(left, right));
+
+    while (!stk.empty()) {
+        std::pair<int, int> range = stk.top();
+        int l = range.first;
+        int r = range.second;
+        stk.pop();
+
+        while (l < r) {
+            if (r - l < INSERTION_SORT_THRESHOLD) 
+            {
+                insertion_sort(arr, l, r);
+                break;
+            }
+
+            int pivot = median_of_three(arr, l, r);
+            int i = l + 1;
+            int j = r;
+
+            while (i <= j) {
+                while (i <= r && arr[i] <= pivot) ++i;
+                while (j > l && arr[j] > pivot) --j;
+                if (i < j) swap(arr[i], arr[j]);
+            }
+            swap(arr[l], arr[j]);
+
+            if (j - 1 - l < r - (j + 1)) {
+                if (l < j - 1) stk.push(std::make_pair(l, j - 1));
+                l = j + 1;
+            }
+            else {
+                if (j + 1 < r) stk.push(std::make_pair(j + 1, r));
+                r = j - 1;
+            }
+        }
+    }
+}
+
+void mergeSort(vector<int>& arr)
+{
+    int n = arr.size();
+    vector<int> temp(n);
+
+    for (int width = 1; width < n; width *= 2) {
+        for (int i = 0; i < n; i += 2 * width) {
+            int left = i;
+            int mid = min(i + width, n);
+            int right = min(i + 2 * width, n);
+
+            int l = left, r = mid, k = left;
+
+            while (l < mid && r < right)
+                temp[k++] = (arr[l] <= arr[r]) ? arr[l++] : arr[r++];
+
+            while (l < mid)
+                temp[k++] = arr[l++];
+
+            while (r < right)
+                temp[k++] = arr[r++];
+        }
+        swap(arr, temp); // copy back
+    }
+}
+
 }
 
 int main()
@@ -336,6 +442,145 @@ void heapSort(vector<int>& working, const vector<int>& original)
 縮減堆大小 (i) 並呼叫 heap 恢復最大堆性質。
 備註：
 堆排序的時間複雜度在所有情況下均為 O(n log n)。
+
+## Quick Sort 函數
+```
+void quicksort(int arr[], int left, int right) 
+{
+    std::stack<std::pair<int, int> > stk;
+    stk.push(std::make_pair(left, right));
+
+    while (!stk.empty()) {
+        std::pair<int, int> range = stk.top();
+        int l = range.first;
+        int r = range.second;
+        stk.pop();
+
+        while (l < r) {
+            if (r - l < INSERTION_SORT_THRESHOLD) 
+            {
+                insertion_sort(arr, l, r);
+                break;
+            }
+
+            int pivot = median_of_three(arr, l, r);
+            int i = l + 1;
+            int j = r;
+
+            while (i <= j) {
+                while (i <= r && arr[i] <= pivot) ++i;
+                while (j > l && arr[j] > pivot) --j;
+                if (i < j) swap(arr[i], arr[j]);
+            }
+            swap(arr[l], arr[j]);
+
+            if (j - 1 - l < r - (j + 1)) {
+                if (l < j - 1) stk.push(std::make_pair(l, j - 1));
+                l = j + 1;
+            }
+            else {
+                if (j + 1 < r) stk.push(std::make_pair(j + 1, r));
+                r = j - 1;
+            }
+        }
+    }
+}
+```
+目的：
+非遞迴版本的快速排序法（Quick Sort），用以對整數陣列進行高效率排序。
+透過迴圈與顯式堆疊取代傳統遞迴，來加快效能避免遞迴呼叫的低效，特別適用於大型資料集或對穩定性要求較高的應用場景。
+參數：
+int arr[]：待排序的整數陣列。
+int left：排序範圍的起始索引（包含）。
+int right：排序範圍的結束索引（包含）。
+功能：
+Pivot Selection：使用三中值法（Median-of-Three）選擇較佳主軸，降低資料偏態導致的性能退化。
+小區間優化：若當前區間小於某閾值（如 INSERTION_SORT_THRESHOLD），則改採插入排序（Insertion Sort）進行處理，以提升局部效率。
+
+備註：
+使用三中值法（median-of-three）選擇 pivot，以降低在接近有序資料上退化為 O(n²) 的機率；
+若子區間長度小於 INSERTION_SORT_THRESHOLD，則使用插入排序作為優化策略。
+
+## Insertion Sort 函數
+```
+// 插入排序(作為加速quick sort用)
+void insertion_sort(int arr[], int left, int right)
+{
+    for (int i = left + 1; i <= right; ++i)
+    {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= left && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            --j;
+        }
+        arr[j + 1] = key;
+    }
+}
+```
+目的：作為快速排序中處理小區間的輔助排序方法，以簡單的方式對小範圍數列進行排序。
+
+參數：與Quick Sort相同。
+功能：
+主要用途為輔助快速排序（Quick Sort），當子區間長度低於特定閾值時（INSERTION_SORT_THRESHOLD）
+即改用插入排序進行處理，以避免快速排序在小區間內效能降低，從而整體提升排序效率。
+備註：
+插入排序在小型資料集下效率高，在 n 較小時常優於 Quick Sort，故常與之搭配使用以提昇整體效能。
+
+## Merge Sort 函數
+```
+void merge(vector<int>& arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    vector<int> L(n1), R(n2);
+    for (int i = 0; i < n1; ++i)
+        L[i] = arr[left + i];
+    for (int i = 0; i < n2; ++i)
+        R[i] = arr[mid + 1 + i];
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k++] = L[i++];
+        }
+        else {
+            arr[k++] = R[j++];
+        }
+    }
+    while (i < n1) {
+        arr[k++] = L[i++];
+    }
+    while (j < n2) {
+        arr[k++] = R[j++];
+    }
+}
+
+void mergeSort(vector<int>& arr, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        merge(arr, left, mid, right);
+    }
+}
+```
+目的：
+本排序演算法採用 分治策略（Divide and Conquer），透過遞迴方式將一個大型未排序陣列逐步拆解為較小的子陣列，直至每個子陣列僅包含一個元素（此時視為已排序）。
+隨後，透過「合併」操作將這些已排序的子陣列依序整合為一個完整有序的陣列，從而達成整體排序的目的。
+參數：
+std::vector<int>& arr：待排序的整數向量，傳入時以參考方式（reference）避免複製開銷。
+int left：排序範圍的起始索引（包含）。
+int right：排序範圍的結束索引（包含）。
+int mid（僅 merge 函數）：用於將目前排序範圍劃分為左右兩個子區間，計算方式為 (left + right) / 2。
+功能：
+mergeSort 函數為主要遞迴流程，負責將原始陣列不斷二分，直到每一段都為最小單位；
+merge 函數則在遞迴結束回溯過程中，負責合併兩段已排序的子陣列，使其合併成更大範圍的有序區間，並最終完成整體排序。
+備註：
+演算法為穩定排序。
+額外使用 O(n) 空間存儲臨時陣列。
+適合處理大型資料且不在意額外記憶體開銷的情況。
 
 ## 檔案讀取函數
 ```
