@@ -833,6 +833,8 @@ testSizes：測試資料量為1000, 2000 ,3000 ,4000 , 5000, 6000, 7000, 8000, 9
 | 10000  | 1665.84 μs  | 1072.16 μs  | 1507.00 μs  |
 | 15000  | 2640.66 μs  | 1138.93 μs  | 2471.79 μs  |
 | 20000  | 3729.18 μs  | 2298.05 μs  | 2902.81 μs  |
+![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Figure_5.png)
+時間複雜度：$O(n \log n)$。
 
 ### Merge Sort
 
@@ -850,8 +852,8 @@ testSizes：測試資料量為1000, 2000 ,3000 ,4000 , 5000, 6000, 7000, 8000, 9
 | 10000  | 7532.67   | 8082.99   | 7420.14   |
 | 15000  | 13506.21  | 11942.26  | 12203.91  |
 | 20000  | 18671.15  | 17064.96  | 17801.64  |
-
-
+![image](https://github.com/hoshinooborotsuki/data-struck/blob/main/src/chart/Figure_6.png)
+時間複雜度：$O(n \log n)$。
 
 ### 空間複雜度
 
