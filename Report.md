@@ -875,9 +875,56 @@ testSizes：測試資料量為1000, 2000 ,3000 ,4000 , 5000, 6000, 7000, 8000, 9
 ### 結論
 
 綜合測試結果：
+Binary Insertion Sort
 
-&emsp;Heap Sort：表現最穩定，在各種情況下時間差異不大。
+&emsp在小數據量時（例如1000–5000筆）表現良好，尤其在隨機資料情況下，速度甚至快過傳統 Insertion Sort。
 
-&emsp;內建 sort：在隨機資料上速度最快，適合一般用途。
+&emsp隨著數據量增加，尤其在反序（最壞）情況下，耗時快速上升，符合其 $O(n^2)$ 的時間複雜度預期。
 
-&emsp;Insertion Sort：對於已排序資料極為高效，但在隨機或反序資料下效能迅速下降。
+&emsp整體來看，Binary Insertion Sort在中小型資料上有不錯的表現，但不適合大型資料集。
+
+Insertion Sort
+
+&emsp順序（最好情況）下表現尚可，符合 $O(n)$ 複雜度，但在隨機與**反序（最壞情況）**下，隨資料量增加，耗時暴增。
+
+&emsp反序資料耗時最明顯，且遠大於其他演算法，證明了其在最壞情況下效能低落，不適合處理大量、無序資料。
+
+內建 sort
+
+&emsp穩定且快速，無論資料是順序、隨機還是反序，耗時皆遠低於 Binary Insertion Sort 和 Insertion Sort。
+
+&emsp表現隨資料量成長呈現 $O(n\log n)$ 增長趨勢，且幾乎沒有劇烈波動，顯示其混合排序策略（如 Timsort）在實務上非常有效。
+
+Heap Sort
+
+&emsp各種情況下表現都非常穩定，耗時曲線平滑，符合 $O(n\log n)$ 預期。
+
+&emsp比內建 sort 稍慢，但勝在穩定性高，即使是最壞情況也沒有明顯性能下降。
+
+Quick Sort
+
+&emsp在隨機資料下表現非常好，速度快於 Heap Sort。
+
+&emsp但在順序或最壞情況下，耗時略為增加，顯示 Quick Sort在劣勢分割時會有退化傾向，不過影響不如理論上 $O(n^2)$ 那麼嚴重（應該有作部分優化，如選取中位數 pivot）。
+
+Merge Sort
+
+&emsp各情況下都維持 $O(n\log n)$ 的趨勢，但整體耗時偏高，明顯慢於內建 sort、Heap Sort和Quick Sort。
+
+&emsp因為 Merge Sort需要額外的空間複製資料，造成了實際表現上的差異。
+
+適合需要穩定排序（Stable Sort）的場景，但若只考慮速度，並非最佳選擇。
+
+整體排名（依一般隨機資料下的速度與穩定性考量）：
+&emsp內建 sort（最快、最穩）
+
+&emspQuick Sort（隨機快，最壞情況略差）
+
+&emspHeap Sort（穩定但稍慢）
+
+&emspMerge Sort（穩定但偏慢）
+
+&emspBinary Insertion Sort（小數據量可以考慮）
+
+&emspInsertion Sort（大型資料不建議）
+
